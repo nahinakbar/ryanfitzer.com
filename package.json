@@ -1,5 +1,13 @@
 {
-  "name": "create-next-example-app",
+  "name": "ryanfitzer.com",
+  "description": "Personal website",
+  "author": "Ryan Fitzer",
+  "license": "MIT",
+  "readmeFilename": "readme.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryanfitzer/ryanfitzer.com.git"
+  },
   "scripts": {
     "dev": "next",
     "build": "next build",
