@@ -15,8 +15,6 @@ export default class MyApp extends App {
 
         MyApp.configureContext( ctx );
 
-        console.log( '_app.js', ctx );
-
         const pageProps = await MyApp.getComponentProps( Component, ctx );
 
         return {
@@ -37,7 +35,7 @@ export default class MyApp extends App {
         return Object.assign( ctx, {
             isServer: !!ctx.req,
             pageName: routes[ ctx.pathname ],
-            renderType = !!ctx.req ? 'server' : 'browser';
+            renderType: ctx.req ? 'server' : 'browser'
         } );
 
     }
@@ -51,6 +49,8 @@ export default class MyApp extends App {
     }
 
     render() {
+
+        console.log( 'App', this.props );
 
         const {
             Component,

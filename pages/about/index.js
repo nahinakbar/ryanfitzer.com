@@ -1,13 +1,27 @@
 import React from 'react';
 
-const About = ( props ) => (
-    <div>
+const About = ( props ) => {
 
-        <h1>{ props.pageName }</h1>
+    console.log( 'About', props );
 
-        <p>Render method: <code>{ props.renderType }</code></p>
+    return (
+        <div>
 
-    </div>
-);
+            <h1>{ props.pageName }</h1>
+
+            <p>Render method: <code>{ props.renderType }</code></p>
+
+        </div>
+    );
+
+};
+
+About.getInitialProps = async ( { req, res, ...rest } ) => {
+
+    return {
+        ...rest
+    };
+
+};
 
 export default About;

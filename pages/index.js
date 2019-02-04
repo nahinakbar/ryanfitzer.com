@@ -10,9 +10,9 @@ class Home extends Component {
 
     static async getInitialProps( { req, res, ...rest } ) {
 
-        console.log( 'home', rest );
-
-        return {};
+        return {
+            ...rest
+        };
 
     }
 
@@ -21,7 +21,9 @@ class Home extends Component {
         const {
             pageName,
             renderType
-        } = this;
+        } = this.props;
+
+        console.log( 'Home', this.props );
 
         return (
             <div>
