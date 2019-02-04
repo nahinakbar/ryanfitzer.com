@@ -1,18 +1,12 @@
 import React from 'react';
-import Link from 'next/link';
 
-const About = () => (
+const About = ( props ) => (
     <div>
 
-        <h1>About</h1>
+        <h1>{ props.pageName }</h1>
 
-        <p>
-            <Link href='/'>
-                <a>Back to Home</a>
-            </Link>
-        </p>
+        <p>Render method: <code>{ props.renderType }</code></p>
 
-        <style jsx>{ `` }</style>
     </div>
 );
 
