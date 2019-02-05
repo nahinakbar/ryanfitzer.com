@@ -10,6 +10,10 @@ const nxt = next( { dev: true } );
 const handle = nxt.getRequestHandler();
 const imagePlaceholder = require( './middleware/image-placeholder' );
 
+const port = process.env.PORT || 3000;
+const protocol = process.env.PROTOCOL || 'http';
+const listenHandler = ( err ) => console.info( `Ready on ${ protocol }://localhost:${ port }` );
+
 nxt.prepare().then( () => {
 
     const app = express();
@@ -36,20 +40,22 @@ nxt.prepare().then( () => {
 
     } );
 
-    // https.createServer( {
-    //     requestCert: false,
-    //     rejectUnauthorized: false,
-    //     key: fs.readFileSync( path.resolve( __dirname, 'localhost.key' ) ),
-    //     cert: fs.readFileSync( path.resolve( __dirname, 'localhost.cert' ) )
-    // }, app ).listen( process.env.PORT || 3000, ( err ) => {
-    //
-    //     if ( err ) throw err;
-    //
-    //     console.info( `Ready on https://localhost:${ process.env.PORT || 3000 }` );
-    //
-    // } );
+    if ( protocol === 'https' ) {
 
-    app.listen( process.env.PORT || 3000 );
+        https.createServer( {
+            requestCert: false,
+            rejectUnauthorized: false,
+            key: fs.readFileSync( path.resolve( __dirname, 'localhost.key' ) ),
+            cert: fs.readFileSync( path.resolve( __dirname, 'localhost.cert' ) )
+        }, app ).listen( port, listenHandler );
+
+    }
+    else {
+
+        app.listen( port, listenHandler );
+
+    }
+
 
 } )
 .catch( ( err ) => {
