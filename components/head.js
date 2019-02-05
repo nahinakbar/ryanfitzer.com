@@ -19,9 +19,7 @@ const Head = ( props ) => (
 
 Head.propTypes = {
     title: string,
-    description: string,
-    url: string,
-    ogImage: string
+    description: string
 };
 
 export default Head;

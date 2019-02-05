@@ -2,6 +2,7 @@ import React from 'react';
 import App, { Container } from 'next/app';
 import Head from '../components/head';
 import Nav from '../components/nav';
+import { match } from '../library/js/routes.js';
 
 export default class MyApp extends App {
 
@@ -26,15 +27,9 @@ export default class MyApp extends App {
 
     static configureContext( ctx ) {
 
-        const routes = {
-            '/': 'Home',
-            '/about': 'About',
-            '/_error': 'Error'
-        };
-
         return Object.assign( ctx, {
             isServer: !!ctx.req,
-            pageName: routes[ ctx.pathname ],
+            pageName: match( ctx.pathname ).name,
             renderType: ctx.req ? 'server' : 'browser'
         } );
 

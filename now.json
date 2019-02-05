@@ -3,7 +3,17 @@
   "builds": [
     {
       "use": "@now/next",
-      "src": "next.config.js"
+      "src": "package.json"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/blog/(?<slug>[^/]+)?$",
+      "dest": "/blog?slug=$slug"
+    },
+    {
+      "src": "/",
+      "dest": "/home"
     }
   ]
 }

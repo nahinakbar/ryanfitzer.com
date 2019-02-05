@@ -1,0 +1,8 @@
+{
+  "inspect": true,
+  "verbose": true,
+  "watch": [
+    "server",
+    "next.config.js"
+  ]
+}
